@@ -14,7 +14,9 @@ function formVer(dispatch, model) {
         [
             setCampo('Comida', description),
             //aplicando un valor default se calorias en 0, utilizan la prop thrusty de js con pipe
-            setCampo('Calorias', calorias || ''),
+            setCampo('Calorias', calorias || '-'),
+            //agregado los botones
+            genboton(dispatch),
         ],
     );
     /* return button({ className: 'f3 pv2 ph3 bg-blue white bn' },
@@ -30,6 +32,25 @@ function setCampo(etiq, valorinput) {
             value: valorinput
         }),
     ])
+}
+//genera el botón del form
+function genboton(pispatch) {
+    return div(
+        [button(
+            {
+                className: 'f3 pv2 ph3 bg-blue white bn mr2 dim',
+                type: 'submit',
+            },
+            'Guardar',
+        ),
+        button(
+            {
+                className: 'f3 pv2 ph3 bg-light-gray dim',
+                type: 'button',
+            },
+            'Cancelar',
+        ),]
+    );
 }
 // vista. param dispach q maneja evento click, y modelo: valor contador.
 function view(dispatch, model) {

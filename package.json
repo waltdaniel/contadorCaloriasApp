@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Contador de Calorias App",
     "scripts": {
-        "start": "webpack-dev-server --open"
+        "start": "webpack-dev-server --open --host 0.0.0.0"
     },
     "author": "WalterDG",
     "license": "MIT",
