@@ -16,7 +16,8 @@ function update(msg, model) {
             //extraigo el valor bool del modelo
             const { showForm } = msg;
             //seteo a true el atrib showF del modelo
-            return { ...model, showForm };
+            //retorna model con atrib cambiados sgún click
+            return { ...model, showForm, description: '', calorias: 0 };
         }
     }
     return model;
