@@ -1,6 +1,6 @@
 import hh from 'hyperscript-helpers';
 import { h } from 'virtual-dom';
-import { MSG } from './Update';
+import { mostrarForm } from './Update';
 
 //usamos un pre para ver el crudo en html
 const { pre, div, h1, button, label, input, form } = hh(h);
@@ -25,7 +25,7 @@ function formVer(dispatch, model) {
     }
     return button({
         className: 'f3 pv2 ph3 bg-blue white bn',
-        onclick: () => dispatch(MSG.SHOW_FORM),
+        onclick: () => dispatch(mostrarForm(true)),
     },
         'Agregar comida');
 }
@@ -41,7 +41,7 @@ function setCampo(etiq, valorinput) {
     ])
 }
 //genera el botón del form
-function genboton(pispatch) {
+function genboton(dispatch) {
     return div(
         [button(
             {
@@ -54,6 +54,7 @@ function genboton(pispatch) {
             {
                 className: 'f3 pv2 ph3 bg-light-gray dim',
                 type: 'button',
+                onclick: () => dispatch(mostrarForm(false)),
             },
             'Cancelar',
         ),]
