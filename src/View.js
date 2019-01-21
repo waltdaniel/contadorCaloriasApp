@@ -1,5 +1,6 @@
 import hh from 'hyperscript-helpers';
 import { h } from 'virtual-dom';
+import { MSG } from './Update';
 
 //usamos un pre para ver el crudo en html
 const { pre, div, h1, button, label, input, form } = hh(h);
@@ -22,7 +23,10 @@ function formVer(dispatch, model) {
             ],
         );
     }
-    return button({ className: 'f3 pv2 ph3 bg-blue white bn' },
+    return button({
+        className: 'f3 pv2 ph3 bg-blue white bn',
+        onclick: () => dispatch(MSG.SHOW_FORM),
+    },
         'Agregar comida');
 }
 //genera el label e input del form

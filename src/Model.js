@@ -1,7 +1,7 @@
 const initModel = {
     description: 'Descripcion primera del modelo',
     calorias: 0,
-    showForm: true,
+    showForm: false,
     nestId: 0,
     editId: null,
     meals: [],
