@@ -6,17 +6,17 @@ import createElement from 'virtual-dom/create-element';
 function app(inicialmodel, update, view, nodo) {
     //seteo estado inicial con params defecto
     let model = inicialmodel;
-    let viewactual = view(dispach, model);
+    let viewactual = view(dispatch, model);
     //-------dice al v dom el nodo vista a monitorizar
     let rootNode = createElement(viewactual);
     nodo.appendChild(rootNode);
     // el dispacher maneja los eventos de los btns
     // como dispacher está dentro del alcance de app se le pasa tmb al view
-    function dispach(msg) {
+    function dispatch(msg) {
         //act estado num según sea msg + o -
         //por lo que model tendrá el estado nuevo actualizado
         model = update(msg, model);
-        const viewactualizado = view(dispach, model);
+        const viewactualizado = view(dispatch, model);
         //acutaliza nodo DOM reemplazando hjo --- patch de vdom
         const patches = diff(viewactual, viewactualizado);
         rootNode = patch(rootNode, patches);
