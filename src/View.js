@@ -8,19 +8,22 @@ const { pre, div, h1, button, label, input, form } = hh(h);
 function formVer(dispatch, model) {
     //muestra el boton. campo input con su label
     //sustraigo por destructuring el valor de la descrip/comida del modelo
-    const { description, calorias } = model;
-    return form(
-        { className: 'w-100 mv2' },
-        [
-            setCampo('Comida', description),
-            //aplicando un valor default se calorias en 0, utilizan la prop thrusty de js con pipe
-            setCampo('Calorias', calorias || '-'),
-            //agregado los botones
-            genboton(dispatch),
-        ],
-    );
-    /* return button({ className: 'f3 pv2 ph3 bg-blue white bn' },
-        'Agregar comida') */
+    // showForm para ver oculto o no el form
+    const { description, calorias, showForm } = model;
+    if (showForm) {
+        return form(
+            { className: 'w-100 mv2' },
+            [
+                setCampo('Comida', description),
+                //aplicando un valor default se calorias en 0, utilizan la prop thrusty de js con pipe
+                setCampo('Calorias', calorias || '-'),
+                //agregado los botones
+                genboton(dispatch),
+            ],
+        );
+    }
+    return button({ className: 'f3 pv2 ph3 bg-blue white bn' },
+        'Agregar comida');
 }
 //genera el label e input del form
 function setCampo(etiq, valorinput) {
