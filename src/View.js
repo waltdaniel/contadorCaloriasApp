@@ -11,21 +11,16 @@ const { pre, div, h1, button, label, input, form } = hh(h);
 
 //dispatch es la fun maneja el evento click en este caso, model el dato
 function formVer(dispatch, model) {
-    //muestra el boton. campo input con su label
-    //sustraigo por destructuring el valor de la descrip/comida del modelo
-    // showForm para ver oculto o no el form
     const { description, calorias, showForm } = model;
     if (showForm) {
         return form(
             { className: 'w-100 mv2' },
             [
                 setCampo('Comida', description,
-                    //el param agregado en update oninput.. acá se le
-                    //envía esta fun que maneja el evento. en cada caso.
                     e => dispatch(comidaInputMsg(e.target.value))
                 ),
                 //aplicando un valor default se calorias en 0, utilizan la prop thrusty de js con pipe
-                setCampo('Calorias', calorias || '-',
+                setCampo('Calorias', calorias || '',
                     e => dispatch(caloriasInputMsg(e.target.value))
                 ),
                 //agregado los botones

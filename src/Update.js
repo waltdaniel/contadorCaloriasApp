@@ -1,5 +1,6 @@
+import * as R from 'ramda';
+
 //a diferencia del export defaul, este export puede usarse para
-//exportar cualquier func/obj
 const MSG = {
     SHOW_FORM: 'SHOW_FORM',
     COMIDA_INPUT: 'COMIDA_INPUT',
@@ -46,8 +47,16 @@ function update(msg, model) {
             return { ...model, description: descrip };
         }
         case MSG.CALORIAS_INPUT: {
-            const { valcalorias } = msg;
-            return { ...model, calorias: valcalorias };
+            /* COMO verif que se numero y no string, por comp funciones c/Rambda */
+            const calorias = R.pipe(
+                //parsea a entero por func JS
+                parseInt,
+                /* asegura default 0 para evitar error NaN, 0 es el param
+                que R.defaultTo usa en caso de que el resultado de una eval 
+                sea Nan o Null*/
+                R.defaultTo(0),
+            )(msg.valcalorias);
+            return { ...model, calorias };
         }
     }
     return model;
