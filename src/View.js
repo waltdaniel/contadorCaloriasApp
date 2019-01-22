@@ -63,6 +63,7 @@ function genboton(dispatch) {
             {
                 className: 'f3 pv2 ph3 bg-light-gray dim',
                 type: 'button',
+                // mostratForm en falso-> ocultar el form.
                 onclick: () => dispatch(mostrarForm(false)),
             },
             'Cancelar',

@@ -48,7 +48,7 @@ function update(msg, model) {
         }
         case MSG.CALORIAS_INPUT: {
             /* COMO verif que se numero y no string, por comp funciones c/Rambda */
-            const calorias = R.pipe(
+            const caloo = R.pipe(
                 //parsea a entero por func JS
                 parseInt,
                 /* asegura default 0 para evitar error NaN, 0 es el param
@@ -56,7 +56,7 @@ function update(msg, model) {
                 sea Nan o Null*/
                 R.defaultTo(0),
             )(msg.valcalorias);
-            return { ...model, calorias };
+            return { ...model, calorias: caloo };
         }
     }
     return model;
