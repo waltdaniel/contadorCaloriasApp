@@ -5,6 +5,7 @@ const MSG = {
     SHOW_FORM: 'SHOW_FORM',
     COMIDA_INPUT: 'COMIDA_INPUT',
     CALORIAS_INPUT: 'CALORIAS_INPUT',
+    SAVE_COMIDA: 'SAVE_COMIDA'
 };
 //maneja el input comida
 export function comidaInputMsg(descrip) {
@@ -13,6 +14,8 @@ export function comidaInputMsg(descrip) {
         descrip
     };
 }
+//----msg al boton guardar
+export const guardarComidaMsg = { type: MSG.SAVE_COMIDA };
 //maneja el input calorias
 export function caloriasInputMsg(valcalorias) {
     return {
@@ -51,14 +54,34 @@ function update(msg, model) {
             const caloo = R.pipe(
                 //parsea a entero por func JS
                 parseInt,
-                /* asegura default 0 para evitar error NaN, 0 es el param
+                /* asegura default 0 -ya puesto por default en el model-
+                para evitar error NaN, 0 es el param
                 que R.defaultTo usa en caso de que el resultado de una eval 
                 sea Nan o Null*/
                 R.defaultTo(0),
             )(msg.valcalorias);
             return { ...model, calorias: caloo };
         }
+        case MSG.SAVE_COMIDA: {
+            //func que agrega item/comida a la colec del modelo
+            return add(msg, model);
+        }
     }
     return model;
+}
+function add(msg, model) {
+    const { nextId, description, calorias } = model;
+    const comidaN = { id: nextId, description, calorias };
+    const comidas = [...model.comidas, comidaN];
+    return {
+        //agrupa en un obj el nuevo registro de comidas
+        ...model, comidas,
+        //setea el next para el que luego se inserte
+        nextId: nextId + 1,
+        //limpia campos por default en el form y cierra el form
+        description: '',
+        calorias: 0,
+        showForm: false,
+    }
 }
 export default update;

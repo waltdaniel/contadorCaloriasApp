@@ -1,9 +1,9 @@
 const initModel = {
     description: 'Descripcion primera del modelo',
-    calorias: 0,
+    calorias: 'afsdf',
     showForm: true,
-    nestId: 0,
+    nextId: 0,
     editId: null,
-    meals: [],
+    comidas: [],
 };
 export default initModel;

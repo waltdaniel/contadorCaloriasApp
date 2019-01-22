@@ -3,7 +3,8 @@ import { h } from 'virtual-dom';
 import {
     mostrarForm,
     comidaInputMsg,
-    caloriasInputMsg
+    caloriasInputMsg,
+    guardarComidaMsg
 } from './Update';
 
 //usamos un pre para ver el crudo en html
@@ -14,7 +15,16 @@ function formVer(dispatch, model) {
     const { description, calorias, showForm } = model;
     if (showForm) {
         return form(
-            { className: 'w-100 mv2' },
+            {
+                className: 'w-100 mv2',
+                onsubmit: e => {
+                    //previene que envíe por met tradic (HTTP POST)
+                    //y tampoco se utilizaría este met si se tuviera un backend
+                    e.preventDefault();
+                    //se llama al dispatch
+                    dispatch(guardarComidaMsg);
+                }
+            },
             [
                 setCampo('Comida', description,
                     e => dispatch(comidaInputMsg(e.target.value))
